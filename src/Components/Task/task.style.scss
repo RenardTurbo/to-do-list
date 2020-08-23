@@ -1,0 +1,10 @@
+.task-wrapper {
+  display: flex;
+  flex-direction: column;
+  .MuiFormControl-root {
+    margin-bottom: 15px;
+  }
+  .MuiButtonBase-root {
+    max-width: 150px;
+  }
+}

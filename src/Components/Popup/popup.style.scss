@@ -1,0 +1,20 @@
+.makeStyles-paper-5 {
+  .MuiButtonBase-root {
+    max-width: 200px;
+    margin-right: 50px;
+    margin-top: 15px;
+  }
+}
+.button-wrapper {
+  display: flex;
+  justify-content: start;
+  .MuiButtonBase-root {
+    max-width: 400px;
+    margin-right: 50px;
+    margin-top: 15px;
+  }
+}
+.makeStyles-paper-5 {
+  max-height: 90vh;
+  overflow-x: scroll;
+}

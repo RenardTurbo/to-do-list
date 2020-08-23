@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import SimpleCard from "./Components/Note/note.component";
+import {inject, observer} from "mobx-react";
+import SimpleModal from "./Components/Popup/popup.component";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = inject("toDo")(
+    observer(({toDo}) => {
+        const {notes, addNote} = toDo;
+        return (
+            <div className="App">
+                <div className="notes-wrapper">
+                    {notes.map((note, index) =>
+                        <SimpleCard id={index} key={`${index}${note.name}`} note={note}/>
+                    )}
+                </div>
+                <div><SimpleModal text="Добавить заметку" onClick={addNote}/></div>
+
+            </div>
+        );
+    }));
 
 export default App;

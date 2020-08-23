@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+
+  .notes-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .App-logo {
