@@ -6,8 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import "./note.style.scss"
-import SimpleModal from "../Popup/popup.component";
-import {inject, observer} from "mobx-react";
+import NoteModalContent from "../ModalContent/noteModalContent.component";
+
 
 const useStyles = makeStyles({
     root: {
@@ -26,11 +26,16 @@ const useStyles = makeStyles({
     },
 });
 
-const SimpleCard = inject("toDo")(
-    observer(({toDo, id, note}) => {
-        const {deleteNote, updateNote} = toDo;
-
+const SimpleCard = (props) => {
+    const {id, note, updateNote, deleteNote, openModal, toggle}=props;
         const classes = useStyles();
+
+
+        const openEditModal = (note) => {
+            openModal(<NoteModalContent note={note} id={id} onClick={updateNote}/>);
+            toggle(true);
+        }
+
 
         return (
             <Card className={classes.root}>
@@ -39,9 +44,8 @@ const SimpleCard = inject("toDo")(
                         {note.name}
                     </Typography>
                     {
-                        note.tasks.map((task) =>
-                            <Typography variant="body2" component="p">
-                                <hr/>
+                        note.tasks.map((task, index) =>
+                            <Typography className="task-wrapper" key={index} variant="body2" component="p">
                                 {task.name}
                                 <br/>
                                 Задача {task.isCompleted ? "выполнена" : "в процессе"}
@@ -52,12 +56,12 @@ const SimpleCard = inject("toDo")(
                     }
                 </CardContent>
                 <CardActions>
-                    <SimpleModal id={id} text="Редактировать" note={note} onClick={updateNote}/>
+                    <Button size="small" variant="outlined" color="primary" onClick={()=>openEditModal(note)}>Редактировать</Button>
                     <Button onClick={() => {
                         deleteNote(id)
                     }} size="small" variant="outlined" color="secondary">Удалить</Button>
                 </CardActions>
             </Card>
         );
-    }))
+    }
 export default SimpleCard;

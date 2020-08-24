@@ -34,7 +34,7 @@ export default function Task(props) {
                     <MenuItem value={false}>Задача в процессе</MenuItem>
                 </Select>
             </FormControl>
-            <TextField type="date" id="standard-basic" label="Дата выполнения" value={dateTask}
+            <TextField type="date" id="standard" label="Дата выполнения" value={dateTask}
                        onChange={(e) => {
                            setDateTasks(e.target.value)
                        }}/>

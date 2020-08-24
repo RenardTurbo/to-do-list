@@ -1,7 +1,9 @@
 import ToDo from "./toDo-store"
+import ModalStore from "./modal-store"
 
 const RootStore = {
-    toDo: ToDo
+    ToDo,
+    ModalStore
 };
 
 export default RootStore;
